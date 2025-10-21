@@ -10,17 +10,31 @@ import Foundation
 @Observable
 class WkDataStore {
     
-    var results: [WKResult] //RESULTAAT VAN LOAD FUNCTIE
+    var results: [WKResult] 
     
     init() {
         results = load("WKResultsQatar.json")
     }
     
-    func getAllLocations() -> [String] {
-        print("getAllLocations")
-        let allLocations = results.map { $0.location }
+    func getAllCountries() -> [String] {
+        print("getAllCountries")
+        let allLocations = results.map { $0.homeTeam }
         let uniqueLocations = Array(Set(allLocations)).sorted()
         return uniqueLocations
     }
+    
+    func getAllStadions() -> [String] {
+        print("getAllStadions")
+        let allStadions = results.map { $0.location }
+        let uniqueStadions = Array(Set(allStadions)).sorted()
+        return uniqueStadions
+    }
+    
+    func getAllMatchesForStadion(selectedStadion: String) -> [WKResult] {
+        return results.filter { $0.location == selectedStadion }
+    }
+
+
+
 
 }

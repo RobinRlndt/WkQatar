@@ -8,12 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(WkDataStore.self) var dataStore
+    @State var selectedName: String?
+    @State var selectedStadion: String?
+    
     var body: some View {
-        VStack {
             NavigationStack {
-                
+                ListNamesView(selectedName: $selectedName);
+                NavigationLink("Next") {
+                    StadionsView(selectedStadion: $selectedStadion)
+                }
             }
-        }
         .padding()
     }
 }
