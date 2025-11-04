@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ListNamesView: View {
-    @Binding var selectedName: String?
-    @State var dataStore = WkDataStore()
+    private var dataStore: WkDataStore
+    
+    @State var selectedName: String?
 
     var body: some View {
         VStack {
@@ -44,7 +45,5 @@ struct ListNamesView: View {
     }
 }
 
-#Preview {
-    ListNamesView(selectedName: .constant(nil))
-}
+
 

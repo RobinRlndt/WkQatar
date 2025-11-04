@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct WkQatarApp: App {
-    @State var dataStore = WkDataStore()
+    var dataStore = WkDataStore()
 
     var body: some Scene {
         WindowGroup {

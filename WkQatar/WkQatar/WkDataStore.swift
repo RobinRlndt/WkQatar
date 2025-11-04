@@ -5,7 +5,9 @@
 //  Created by Robin Roelandt on 20/10/2025.
 //
 
-import Foundation
+import SwiftUI
+import Observation
+
 
 @Observable
 class WkDataStore {

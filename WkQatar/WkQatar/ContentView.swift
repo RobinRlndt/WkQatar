@@ -6,15 +6,17 @@
 //
 
 import SwiftUI
+import Observation
 
 struct ContentView: View {
-    @Environment(WkDataStore.self) var dataStore
+    var dataStore = WkDataStore()
+    
     @State var selectedName: String?
     @State var selectedStadion: String?
     
     var body: some View {
             NavigationStack {
-                ListNamesView(selectedName: $selectedName);
+                ListNamesView(dataStore: <#WkDataStore#>, selectedName: selectedName);
                 NavigationLink("Next") {
                     StadionsView(selectedStadion: $selectedStadion)
                 }
