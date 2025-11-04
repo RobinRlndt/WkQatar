@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MatchesView: View {
     var selectedStadion: String
-    @State var dataStore = WkDataStore()
+    @Environment(WkDataStore.self) var dataStore
 
     var body: some View {
         let matches = dataStore.getAllMatchesForStadion(selectedStadion: selectedStadion)
@@ -42,6 +42,7 @@ struct MatchesView: View {
         }
     }
 }
+
 
 
 

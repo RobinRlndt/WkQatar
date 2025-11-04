@@ -9,12 +9,11 @@ import SwiftUI
 
 @main
 struct WkQatarApp: App {
-    @State var dataStore = WkDataStore() // Use @StateObject for reference model
+    @State var dataStore = WkDataStore()
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(dataStore) // Pass dataStore to environment
+            ContentView().environment(dataStore)
         }
     }
 }
