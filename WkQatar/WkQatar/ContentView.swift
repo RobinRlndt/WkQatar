@@ -6,21 +6,20 @@
 //
 
 import SwiftUI
-import Observation
 
 struct ContentView: View {
-    var dataStore = WkDataStore()
-    
-    @State var selectedName: String?
-    @State var selectedStadion: String?
-    
+    @Environment(\.dataStore) var dataStore: WkDataStore
+
+    @State private var selectedName: String? = nil
+    @State private var selectedStadion: String? = nil
+
     var body: some View {
-            NavigationStack {
-                ListNamesView(dataStore: <#WkDataStore#>, selectedName: selectedName);
-                NavigationLink("Next") {
-                    StadionsView(selectedStadion: $selectedStadion)
-                }
+        NavigationStack {
+            ListNamesView(dataStore: dataStore, selectedName: $selectedName)
+            NavigationLink("Next") {
+                StadionsView(dataStore: dataStore, selectedStadion: $selectedStadion, selectedCountry: selectedName)
             }
+        }
         .padding()
     }
 }
@@ -28,3 +27,7 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+
+
+
+

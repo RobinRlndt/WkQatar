@@ -5,38 +5,38 @@
 //  Created by Robin Roelandt on 20/10/2025.
 //
 
-import SwiftUI
-import Observation
 
+import Observation
 
 @Observable
 class WkDataStore {
+    var selectedName: String?
+    var selectedStadion: String?
     
-    var results: [WKResult] 
+    var results: [WKResult]
     
     init() {
         results = load("WKResultsQatar.json")
     }
     
     func getAllCountries() -> [String] {
-        print("getAllCountries")
-        let allLocations = results.map { $0.homeTeam }
-        let uniqueLocations = Array(Set(allLocations)).sorted()
-        return uniqueLocations
+        let allTeams = results.flatMap { [$0.homeTeam, $0.awayTeam] }
+        let uniqueTeams = Array(Set(allTeams)).sorted()
+        print("getAllCountries called, total unique: \(uniqueTeams.count)")
+        return uniqueTeams
     }
     
     func getAllStadions() -> [String] {
-        print("getAllStadions")
         let allStadions = results.map { $0.location }
         let uniqueStadions = Array(Set(allStadions)).sorted()
+        print("getAllStadions called, total unique: \(uniqueStadions.count)")
         return uniqueStadions
     }
     
     func getAllMatchesForStadion(selectedStadion: String) -> [WKResult] {
-        return results.filter { $0.location == selectedStadion }
+        let filtered = results.filter { $0.location == selectedStadion }
+        print("getAllMatchesForStadion called for \(selectedStadion), count: \(filtered.count)")
+        return filtered
     }
-
-
-
-
 }
+

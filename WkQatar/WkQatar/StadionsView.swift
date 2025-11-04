@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct StadionsView: View {
-    @State var dataStore = WkDataStore()
+    @Bindable var dataStore: WkDataStore
     @Binding var selectedStadion: String?
+    var selectedCountry: String?
 
     var body: some View {
         NavigationSplitView {
@@ -24,7 +25,7 @@ struct StadionsView: View {
                         .font(.title)
                         .padding(.bottom)
 
-                    MatchesView(selectedStadion: selected) 
+                    MatchesView(selectedStadion: selected, selectedCountry: selectedCountry, dataStore: dataStore)
 
                     Spacer()
                 }
@@ -35,9 +36,15 @@ struct StadionsView: View {
                     .foregroundColor(.secondary)
             }
         }
-
     }
 }
+
+#Preview {
+    StadionsView(dataStore: WkDataStore(), selectedStadion: .constant(nil), selectedCountry: nil)
+}
+
+
+
 
 
 

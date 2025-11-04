@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - WKResult
-class WKResult: Codable, Hashable {
+class WKResult: Codable, Hashable, Identifiable {
     //equitable
     static func == (lhs: WKResult, rhs: WKResult) -> Bool {
         lhs.matchNumber == rhs.matchNumber
@@ -17,6 +17,9 @@ class WKResult: Codable, Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(matchNumber)
        
+    }
+    var id: Int {
+           matchNumber
     }
     
     let matchNumber, roundNumber: Int

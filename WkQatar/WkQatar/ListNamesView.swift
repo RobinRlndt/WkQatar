@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct ListNamesView: View {
-    private var dataStore: WkDataStore
-    
-    @State var selectedName: String?
+    @Bindable var dataStore: WkDataStore
+    @Binding var selectedName: String?
 
     var body: some View {
         VStack {
@@ -19,13 +18,14 @@ struct ListNamesView: View {
                 .fontWeight(.bold)
                 .foregroundStyle(Color.red)
                 .padding(.bottom)
-            
+
             List(dataStore.getAllCountries(), id: \.self) { name in
-                Button(action: {
+                Button {
                     selectedName = name
-                }) {
+                } label: {
                     HStack {
                         Text(name)
+                            .foregroundColor(selectedName == name ? .red : .primary)
                         Spacer()
                         if selectedName == name {
                             Image(systemName: "checkmark")
@@ -44,6 +44,11 @@ struct ListNamesView: View {
         .navigationTitle("SELECT A COUNTRY")
     }
 }
+
+
+
+
+
 
 
 

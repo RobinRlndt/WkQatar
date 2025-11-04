@@ -6,16 +6,20 @@
 //
 
 import SwiftUI
+import Observation
 
 @main
 struct WkQatarApp: App {
-    var dataStore = WkDataStore()
+    @State private var dataStore = WkDataStore()
 
     var body: some Scene {
         WindowGroup {
-            ContentView().environment(dataStore)
+            ContentView()
+                .environment(\.dataStore, dataStore)
         }
     }
 }
+
+
 
 
